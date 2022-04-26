@@ -16,14 +16,14 @@ describe('Employee class', () => {
 		});
 	});
 
-	describe('getId', () => {
-		it('should return id', () => {
+	describe('id', () => {
+		it('should store id', () => {
 			expect(id).toBe(2);
 		});
 	});
 
-	describe('getEmail', () => {
-		it('should return email', () => {
+	describe('email', () => {
+		it('should store email', () => {
 			expect(email).toBe('jenny@hotmail.com');
 		});
 	});
