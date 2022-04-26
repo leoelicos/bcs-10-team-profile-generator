@@ -1,14 +1,32 @@
 const Employee = require('../lib/employee');
 
 describe('Employee class', () => {
-	const name = 'Jenny';
-	const id = 2;
-	const email = 'jenny@hotmail.com';
-	const employee = new Employee(name, id, email);
+	const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+	const name = employee.name;
+	const id = employee.id;
+	const email = employee.email;
 	const returnedName = employee.getName();
 	const returnedId = employee.getId();
 	const returnedEmail = employee.getEmail();
 	const returnedRole = employee.getRole();
+
+	describe('name', () => {
+		it('should store employee name', () => {
+			expect(name).toBe('Jenny');
+		});
+	});
+
+	describe('getId', () => {
+		it('should return id', () => {
+			expect(id).toBe(2);
+		});
+	});
+
+	describe('getEmail', () => {
+		it('should return email', () => {
+			expect(email).toBe('jenny@hotmail.com');
+		});
+	});
 
 	describe('getName', () => {
 		it('should return employee name', () => {
