@@ -1,4 +1,4 @@
-const Letter = require('../lib/employee');
+const Employee = require('../lib/employee');
 
 describe('employee.js', () => {
 	describe('getName()', () => {
