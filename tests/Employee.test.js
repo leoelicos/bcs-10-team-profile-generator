@@ -1,54 +1,58 @@
 const Employee = require('../lib/employee');
 
 describe('Employee class', () => {
-	const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
-	const name = employee.name;
-	const id = employee.id;
-	const email = employee.email;
-	const returnedName = employee.getName();
-	const returnedId = employee.getId();
-	const returnedEmail = employee.getEmail();
-	const returnedRole = employee.getRole();
-
-	describe('name', () => {
-		it('should store employee name', () => {
-			expect(name).toBe('Jenny');
+	describe('Initialization', () => {
+		it("should return an object containing a 'name' property when called with the 'new' keyword", () => {
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect('name' in employee).toEqual(true);
 		});
-	});
-
-	describe('id', () => {
-		it('should store id', () => {
-			expect(id).toBe(2);
+		it("should set 'name' when created", () => {
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect(employee.name).toBe('Jenny');
 		});
-	});
-
-	describe('email', () => {
-		it('should store email', () => {
-			expect(email).toBe('jenny@hotmail.com');
+		it("should return an object containing an 'id' property when called with the 'new' keyword", () => {
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect('id' in employee).toEqual(true);
+		});
+		it("should set 'id' when created", () => {
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect(employee.id).toBe(2);
+		});
+		it("should return an object containing an 'email' property when called with the 'new' keyword", () => {
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect('email' in employee).toEqual(true);
+		});
+		it("should set 'email' when created", () => {
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect(employee.email).toBe('jenny@hotmail.com');
 		});
 	});
 
 	describe('getName', () => {
 		it('should return employee name', () => {
-			expect(returnedName).toBe('Jenny');
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect(employee.getName()).toBe('Jenny');
 		});
 	});
 
 	describe('getId', () => {
 		it('should return id', () => {
-			expect(returnedId).toBe(2);
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect(employee.getId()).toBe(2);
 		});
 	});
 
 	describe('getEmail', () => {
 		it('should return email', () => {
-			expect(returnedEmail).toBe('jenny@hotmail.com');
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect(employee.getEmail()).toBe('jenny@hotmail.com');
 		});
 	});
 
 	describe('getRole', () => {
 		it("should return 'Employee'", () => {
-			expect(returnedRole).toBe('Employee');
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			expect(employee.getRole()).toBe('Employee');
 		});
 	});
 });
