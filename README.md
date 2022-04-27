@@ -25,12 +25,12 @@ _GIF of Installation:_ [gifinstall](#gifinstall)
 
 ## Usage
 
-| Step                             | Command Line                                                 |
-| -------------------------------- | ------------------------------------------------------------ |
-| run the generator                | `node index.js`                                              |
-| answer the prompts               | `{answer}`                                                   |
-| _cancel without creating readme_ | <kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>⌘</kbd> + <kbd>C</kbd> |
-| open /dist/ to see the files     | `cd dist`                                                    |
+| Step                         | Command Line                                                 |
+| ---------------------------- | ------------------------------------------------------------ |
+| run the generator            | `node index.js`                                              |
+| answer the prompts           | `{answer}`                                                   |
+| _cancel without generating_  | <kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>⌘</kbd> + <kbd>C</kbd> |
+| open /dist/ to see the files | `cd dist`                                                    |
 
 _Video Demo:_ [Demo On YouTube]()
 
