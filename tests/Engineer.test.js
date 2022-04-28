@@ -4,8 +4,8 @@ describe('dummy', () => {
 	});
 });
 
-/* const Engineer = require('../lib/engineer');
-const Employee = require('../lib/employee');
+/* const Engineer = require('../lib/Engineer');
+const Employee = require('../lib/Employee');
 
 describe('Engineer class', () => {
 	const engineer = new Engineer('Jenny', 2, 'jenny@hotmail.com', 'jenny22');

@@ -3,8 +3,8 @@ describe('dummy', () => {
 		expect(1).toBe(1);
 	});
 });
-/* const Manager = require('../lib/manager');
-const Employee = require('../lib/employee');
+/* const Manager = require('../lib/Manager');
+const Employee = require('../lib/Employee');
 
 describe('Manager class', () => {
 	const manager = new Manager('Jenny', 2, 'jenny@hotmail.com', 23);

@@ -3,8 +3,8 @@ describe('dummy', () => {
 		expect(1).toBe(1);
 	});
 });
-/* const Intern = require('../lib/intern');
-const Employee = require('../lib/employee');
+/* const Intern = require('../lib/Intern');
+const Employee = require('../lib/Employee');
 
 describe('Intern class', () => {
 	const intern = new Intern('Jenny', 2, 'jenny@hotmail.com', 'St Clare High School');
