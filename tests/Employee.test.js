@@ -2,50 +2,34 @@ const Employee = require('../lib/Employee');
 
 describe('Employee class', () => {
 	describe('initialization', () => {
-		// positive test
-		it("returns object with 'name' property set to 'name' argument when called with the 'new' keyword", () => {
+		// positive tests
+		it("returns object with 'name', 'id', 'email' properties set to 'name', 'id', 'email' arguments when called with the 'new' keyword", () => {
 			// arrange
 			const name = 'Jenny';
-			// act
-			const employee = new Employee(name, 2, 'jenny@hotmail.com');
-			// assert
-			expect(employee.name).toBe(name);
-		});
-
-		// positive test
-		it("returns object with 'id' property set to 'id' argument when called with the 'new' keyword", () => {
-			// arrange
 			const id = 2;
-			// act
-			const employee = new Employee('Jenny', id, 'jenny@hotmail.com');
-			// assert
-			expect(employee.id).toBe(id);
-		});
-
-		// positive test
-		it("returns object with 'email' property set to 'email' argument when called with the 'new' keyword", () => {
-			// arrange
 			const email = 'jenny@hotmail.com';
 			// act
-			const employee = new Employee('Jenny', 2, email);
+			const employee = new Employee(name, id, email);
 			// assert
+			expect(employee.name).toBe(name);
+			expect(employee.id).toBe(id);
 			expect(employee.email).toBe(email);
 		});
 
-		// exception test
+		// exception tests
 		it("throws error if non-empty 'name' param is not provided", () => {
 			// arrange
 			const cb = (badName) => new Employee(badName, 2, 'jenny@hotmail.com');
 			const err = new Error("Expected parameter 'name' to be a non empty string");
 
 			// assert
+			expect(cb(2)).toThrowError(err);
 			expect(cb('')).toThrowError(err);
 			expect(cb(' ')).toThrowError(err);
-			expect(cb(2)).toThrowError(err);
 			expect(cb(null)).toThrowError(err);
 		});
 
-		// exception test
+		// exception tests
 		it("throws error if positive 'id' param is not provided", () => {
 			// arrange
 			const cb = (badId) => new Employee('Jenny', badId, 'jenny@hotmail.com');
@@ -56,7 +40,7 @@ describe('Employee class', () => {
 			expect(cb(0)).toThrowError(err);
 		});
 
-		// exception test
+		// exception tests
 		it("throws error if non-empty and valid string 'email' param is not provided", () => {
 			// arrange
 			const cb = (badEmail) => new Employee('Jenny', 2, badEmail);
@@ -86,21 +70,10 @@ describe('Employee class', () => {
 		it('returns employee name', () => {
 			// arrange
 			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
-
-			// act
-			const result = employee.getName();
+			const cb = () => employee.getName();
 
 			// assert
-			expect(result).toBe('Jenny');
-		});
-
-		// positive test
-		it('takes no params', () => {
-			// arrange
-			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
-
-			// assert
-			expect(employee.getName).toHaveBeenCalledWith();
+			expect(cb).toBe('Jenny');
 		});
 	});
 
@@ -110,21 +83,10 @@ describe('Employee class', () => {
 			// arrange
 			const id = 2;
 			const employee = new Employee('Jenny', id, 'jenny@hotmail.com');
-
-			// act
-			const result = employee.getId();
+			const cb = () => employee.getId();
 
 			// assert
-			expect(result).toBe(id);
-		});
-
-		// positive test
-		it('takes no params', () => {
-			// arrange
-			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
-
-			// assert
-			expect(employee.getId).toHaveBeenCalledWith();
+			expect(cb).toBe(id);
 		});
 	});
 
@@ -134,21 +96,10 @@ describe('Employee class', () => {
 			// arrange
 			const email = 'jenny@hotmail.com';
 			const employee = new Employee('Jenny', 2, email);
-
-			// act
-			const result = employee.getEmail();
+			const cb = () => employee.getEmail();
 
 			// assert
-			expect(result).toBe(email);
-		});
-
-		// positive test
-		it('takes no params', () => {
-			// arrange
-			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
-
-			// assert
-			expect(employee.getEmail).toHaveBeenCalledWith();
+			expect(cb).toBe(email);
 		});
 	});
 });
