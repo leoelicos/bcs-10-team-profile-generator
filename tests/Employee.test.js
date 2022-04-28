@@ -19,36 +19,36 @@ describe('Employee class', () => {
 		// exception tests
 		it("throws error if non-empty 'name' param is not provided", () => {
 			// arrange
-			const cb = (badName) => new Employee(badName, 2, 'jenny@hotmail.com');
+			const cb = () => new Employee(2, 2, 'jenny@hotmail.com');
 			const err = new Error("Expected parameter 'name' to be a non empty string");
 
 			// assert
-			expect(cb(2)).toThrowError(err);
-			expect(cb('')).toThrowError(err);
+			expect(cb).toThrowError(err);
+			/* 			expect(cb('')).toThrowError(err);
 			expect(cb(' ')).toThrowError(err);
-			expect(cb(null)).toThrowError(err);
+			expect(cb(null)).toThrowError(err); */
 		});
 
 		// exception tests
 		it("throws error if positive 'id' param is not provided", () => {
 			// arrange
-			const cb = (badId) => new Employee('Jenny', badId, 'jenny@hotmail.com');
+			const cb = () => new Employee('Jenny', -1, 'jenny@hotmail.com');
 			const err = new Error("Expected parameter 'id' to be positive integer");
 
 			// assert
-			expect(cb(-1)).toThrowError(err);
-			expect(cb(0)).toThrowError(err);
+			expect(cb).toThrowError(err);
+			/* 			expect(cb(0)).toThrowError(err); */
 		});
 
 		// exception tests
 		it("throws error if non-empty and valid string 'email' param is not provided", () => {
 			// arrange
-			const cb = (badEmail) => new Employee('Jenny', 2, badEmail);
+			const cb = () => new Employee('Jenny', 2, '');
 			const err = new Error("Expected parameter 'email' to be a non empty string");
 
 			// assert
-			expect(cb('')).toThrowError(err);
-			expect(cb(' ')).toThrowError(err);
+			expect(cb).toThrowError(err);
+			/* 			expect(cb(' ')).toThrowError(err);
 			expect(cb(2)).toThrowError(err);
 			expect(cb(null)).toThrowError(err);
 			expect(cb('jenny')).toThrowError(err);
@@ -61,7 +61,7 @@ describe('Employee class', () => {
 			expect(cb('@hotmail.com')).toThrowError(err);
 			expect(cb('je nny@hotmail.com')).toThrowError(err);
 			expect(cb('jenny@ho tmail.com')).toThrowError(err);
-			expect(cb('jenny@hotmail.c om')).toThrowError(err);
+			expect(cb('jenny@hotmail.c om')).toThrowError(err); */
 		});
 	});
 
