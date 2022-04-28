@@ -1,6 +1,6 @@
 const Employee = require('../lib/Employee');
 
-describe('Employee', () => {
+describe('Employee class', () => {
 	describe('initialization', () => {
 		// positive test
 		it("returns object with 'name' property set to 'name' argument when called with the 'new' keyword", () => {
@@ -23,7 +23,7 @@ describe('Employee', () => {
 		});
 
 		// positive test
-		it("returns object with 'name', 'id', 'email' properties set to 'name', 'id', 'email' arguments when called with the 'new' keyword", () => {
+		it("returns object with 'email' property set to 'email' argument when called with the 'new' keyword", () => {
 			// arrange
 			const email = 'jenny@hotmail.com';
 			// act
