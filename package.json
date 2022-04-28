@@ -1,28 +1,30 @@
 {
-  "name": "bcs-10-team-profile-generator",
-  "version": "1.0.0",
-  "description": "![NodeJS](https://img.shields.io/badge/16.14.2-0?label=node.js&labelColor=white&color=black) ![Javascript](https://img.shields.io/badge/ES6-0?label=javascript&labelColor=white&color=black) ![npm](https://img.shields.io/badge/8.x-0?label=npm&labelColor=white&color=black) ![npm](https://img.shields.io/badge/8.2.2-0?label=inquirer&labelColor=white&color=black) ![chalk](https://img.shields.io/badge/4.1.2-0?label=chalk&labelColor=white&color=black)",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/leoelicos/bcs-10-team-profile-generator.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/leoelicos/bcs-10-team-profile-generator/issues"
-  },
-  "homepage": "https://github.com/leoelicos/bcs-10-team-profile-generator#readme",
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "inquirer": "^8.2.2",
-    "jest": "^27.5.1"
-  }
+	"name": "bcs-10-team-profile-generator",
+	"version": "1.0.0",
+	"description": "![NodeJS](https://img.shields.io/badge/16.14.2-0?label=node.js&labelColor=white&color=black) ![Javascript](https://img.shields.io/badge/ES6-0?label=javascript&labelColor=white&color=black) ![npm](https://img.shields.io/badge/8.x-0?label=npm&labelColor=white&color=black) ![npm](https://img.shields.io/badge/8.2.2-0?label=inquirer&labelColor=white&color=black) ![chalk](https://img.shields.io/badge/4.1.2-0?label=chalk&labelColor=white&color=black)",
+	"main": "index.js",
+	"directories": {
+		"lib": "lib",
+		"test": "tests"
+	},
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/leoelicos/bcs-10-team-profile-generator.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/leoelicos/bcs-10-team-profile-generator/issues"
+	},
+	"homepage": "https://github.com/leoelicos/bcs-10-team-profile-generator#readme",
+	"dependencies": {
+		"chalk": "^4.1.2",
+		"inquirer": "^8.2.2"
+	},
+	"devDependencies": {
+		"jest": "^28.0.2"
+	}
 }
