@@ -1,116 +1,154 @@
 const Employee = require('../lib/employee');
 
-describe('Employee class', () => {
-	describe('Initialization', () => {
-		it("should return an object containing a 'name' property when called with the 'new' keyword", () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const employee = new Employee(testName, testId, testEmail);
-			expect('name' in employee).toEqual(true);
+describe('Employee', () => {
+	describe('initialization', () => {
+		// positive test
+		it("returns object with 'name' property set to 'name' argument when called with the 'new' keyword", () => {
+			// arrange
+			const name = 'Jenny';
+			// act
+			const employee = new Employee(name, 2, 'jenny@hotmail.com');
+			// assert
+			expect(employee.name).toBe(name);
 		});
-		it("should set 'name' when created", () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const employeeName = new Employee(testName, testId, testEmail).name;
-			expect(employeeName).toBe(testName);
+
+		// positive test
+		it("returns object with 'id' property set to 'id' argument when called with the 'new' keyword", () => {
+			// arrange
+			const id = 2;
+			// act
+			const employee = new Employee('Jenny', id, 'jenny@hotmail.com');
+			// assert
+			expect(employee.id).toBe(id);
 		});
-		it("should return an object containing an 'id' property when called with the 'new' keyword", () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const employee = new Employee(testName, testId, testEmail);
-			expect('id' in employee).toEqual(true);
+
+		// positive test
+		it("returns object with 'name', 'id', 'email' properties set to 'name', 'id', 'email' arguments when called with the 'new' keyword", () => {
+			// arrange
+			const email = 'jenny@hotmail.com';
+			// act
+			const employee = new Employee('Jenny', 2, email);
+			// assert
+			expect(employee.email).toBe(email);
 		});
-		it("should set 'id' when created", () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const employeeId = new Employee(testName, testId, testEmail).id;
-			expect(employeeId).toBe(testId);
+
+		// exception test
+		it("throws error if non-empty 'name' param is not provided", () => {
+			// arrange
+			const cb = (badName) => new Employee(badName, 2, 'jenny@hotmail.com');
+			const err = new Error("Expected parameter 'name' to be a non empty string");
+
+			// assert
+			expect(cb('')).toThrowError(err);
+			expect(cb(' ')).toThrowError(err);
+			expect(cb(2)).toThrowError(err);
+			expect(cb(null)).toThrowError(err);
 		});
-		it("should return an object containing an 'email' property when called with the 'new' keyword", () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const employee = new Employee(testName, testId, testEmail);
-			expect('email' in employee).toEqual(true);
+
+		// exception test
+		it("throws error if positive 'id' param is not provided", () => {
+			// arrange
+			const cb = (badId) => new Employee('Jenny', badId, 'jenny@hotmail.com');
+			const err = new Error("Expected parameter 'id' to be positive integer");
+
+			// assert
+			expect(cb(-1)).toThrowError(err);
+			expect(cb(0)).toThrowError(err);
 		});
-		it("should set 'email' when created", () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const employeeEmail = new Employee(testName, testId, testEmail).email;
-			expect(employeeEmail).toBe(testEmail);
+
+		// exception test
+		it("throws error if non-empty and valid string 'email' param is not provided", () => {
+			// arrange
+			const cb = (badEmail) => new Employee('Jenny', 2, badEmail);
+			const err = new Error("Expected parameter 'email' to be a non empty string");
+
+			// assert
+			expect(cb('')).toThrowError(err);
+			expect(cb(' ')).toThrowError(err);
+			expect(cb(2)).toThrowError(err);
+			expect(cb(null)).toThrowError(err);
+			expect(cb('jenny')).toThrowError(err);
+			expect(cb('@.')).toThrowError(err);
+			expect(cb('jenny@.')).toThrowError(err);
+			expect(cb('@hotmail.')).toThrowError(err);
+			expect(cb('@.com')).toThrowError(err);
+			expect(cb('jenny@hotmail.')).toThrowError(err);
+			expect(cb('jenny@.com')).toThrowError(err);
+			expect(cb('@hotmail.com')).toThrowError(err);
+			expect(cb('je nny@hotmail.com')).toThrowError(err);
+			expect(cb('jenny@ho tmail.com')).toThrowError(err);
+			expect(cb('jenny@hotmail.c om')).toThrowError(err);
 		});
 	});
 
 	describe('getName', () => {
-		it('should return a string', () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const str = new Employee(testName, testId, testEmail).getName();
-			expect(typeof str).toBe('string');
+		// positive test
+		it('returns employee name', () => {
+			// arrange
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+
+			// act
+			const result = employee.getName();
+
+			// assert
+			expect(result).toBe('Jenny');
 		});
-		it('should return employee name', () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const employee = new Employee(testName, testId, testEmail);
-			expect(employee.getName()).toBe(testName);
+
+		// positive test
+		it('takes no params', () => {
+			// arrange
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+
+			// assert
+			expect(employee.getName).toHaveBeenCalledWith();
 		});
 	});
 
 	describe('getId', () => {
-		it('should return a string', () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const str = new Employee(testName, testId, testEmail).getId();
-			expect(typeof str).toBe('string');
+		// positive test
+		it('returns employee id', () => {
+			// arrange
+			const id = 2;
+			const employee = new Employee('Jenny', id, 'jenny@hotmail.com');
+
+			// act
+			const result = employee.getId();
+
+			// assert
+			expect(result).toBe(id);
 		});
-		it('should return id', () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const employee = new Employee(testName, testId, testEmail);
-			expect(employee.getId()).toBe(testId);
+
+		// positive test
+		it('takes no params', () => {
+			// arrange
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+
+			// assert
+			expect(employee.getId).toHaveBeenCalledWith();
 		});
 	});
 
 	describe('getEmail', () => {
-		it('should return a string', () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const str = new Employee(testName, testId, testEmail).getEmail();
-			expect(typeof str).toBe('string');
-		});
-		it('should return email', () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const str = new Employee(testName, testId, testEmail).getEmail();
-			expect(str).toBe(testEmail);
-		});
-	});
+		// positive test
+		it('returns employee email', () => {
+			// arrange
+			const email = 'jenny@hotmail.com';
+			const employee = new Employee('Jenny', 2, email);
 
-	describe('getRole', () => {
-		it('should return a string', () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const str = new Employee(testName, testId, testEmail).getRole();
-			expect(typeof str).toBe('string');
+			// act
+			const result = employee.getEmail();
+
+			// assert
+			expect(result).toBe(email);
 		});
-		it("should return 'Employee'", () => {
-			const testName = 'Jenny';
-			const testId = 2;
-			const testEmail = 'jenny@hotmail.com';
-			const str = new Employee(testName, testId, testEmail).getRole();
-			expect(str).toBe('Employee');
+
+		// positive test
+		it('takes no params', () => {
+			// arrange
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+
+			// assert
+			expect(employee.getEmail).toHaveBeenCalledWith();
 		});
 	});
 });
