@@ -10,7 +10,7 @@ Copyright Leo Wong 2022
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const fs = require('fs');
-const generateMarkdown = require('./utils/generateMarkdown');
+const generateMarkdown = require('./src/utils/generateMarkdown');
 
 // chalk functions add color to console logs for visual impact
 const primary = (w) => chalk.magenta.bgWhite(` ${w} `);
