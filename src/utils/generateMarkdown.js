@@ -15,14 +15,14 @@ function generateMarkdown(data) {
 	const projectTitle = 'Team Profile Generator';
 	const headerText = 'My Team';
 
-	let html = `<!DOCTYPE html>
+	const html = `<!DOCTYPE html>
 	<html lang="en">
 		<head>
 			<meta charset="UTF-8" />
 			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			<link rel="shortcut icon" href="${faviconLink}" type="image/x-icon" />
-			<link rel="stylesheet" href="../src/normalize.css" />
-			<link rel="stylesheet" href="./style.css" />
+			<link rel="stylesheet" href="../../dist/normalize.css" />
+			<link rel="stylesheet" href="../../dist/style.css" />
 			<title>${projectTitle}</title>
 		</head>
 		<body>
@@ -44,7 +44,7 @@ function generateMarkdown(data) {
 			listItem += 'Office number:';
 		} else if (role === ROLE_ENGINEER) {
 			listItem += 'GitHub:';
-		} else if (Role === ROLE_INTERN) {
+		} else if (role === ROLE_INTERN) {
 			listItem += 'School:';
 		}
 
