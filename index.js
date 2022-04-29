@@ -11,6 +11,7 @@ const inquirer = require('inquirer');
 const chalk = require('chalk');
 const fs = require('fs');
 const generateMarkdown = require('./src/utils/generateMarkdown');
+const generateMarkdown = require('./src/utils/generateBoilerplate');
 
 // chalk functions add color to console logs for visual impact
 const primary = (w) => chalk.magenta.bgWhite(` ${w} `);
@@ -101,6 +102,7 @@ function generateQuestions(role) {
 async function getMember(role) {
 	let questions = generateQuestions(role);
 	let data = await inquirer.prompt(questions);
+
 	let menu = data.menu;
 	data.role = role;
 	// create classes
@@ -115,8 +117,9 @@ async function getMember(role) {
 // function to write README file
 const filePath = './dist/';
 const fileType = '.html';
-function writeToFile(fileName, data) {
-	fs.writeFile(filePath + fileName + fileType, generateMarkdown(data), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName + fileType}!`))));
+async function writeToFile(fileName, data) {
+	await fs.writeFile(filePath + fileName + fileType, generateBoilerplate(), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName + fileType}!`))));
+	generateMarkdown(data);
 }
 
 // Function call to initialize app
