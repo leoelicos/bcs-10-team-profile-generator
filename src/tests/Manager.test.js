@@ -1,4 +1,4 @@
-const Manager = require('../lib/Manager');
+const Manager = require('../../lib/Manager');
 /* 
 officeNumber
 getRole()—overridden to return 'Manager'
