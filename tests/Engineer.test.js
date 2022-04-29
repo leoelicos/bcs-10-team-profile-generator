@@ -1,76 +1,77 @@
-describe('dummy', () => {
-	it('should pass', () => {
-		expect(1).toBe(1);
-	});
-});
-
-/* const Engineer = require('../lib/Engineer');
+const Engineer = require('../lib/Engineer');
 const Employee = require('../lib/Employee');
-
+/* 
+github—GitHub username
+getGithub()
+getRole()—overridden to return 'Engineer'
+*/
 describe('Engineer class', () => {
-	const engineer = new Engineer('Jenny', 2, 'jenny@hotmail.com', 'jenny22');
-	const name = engineer.name;
-	const id = engineer.id;
-	const email = engineer.email;
-	const github = engineer.github;
-	const returnedName = engineer.getName();
-	const returnedId = engineer.getId();
-	const returnedEmail = engineer.getEmail();
-	const returnedRole = engineer.getRole();
-	const returnedGithub = engineer.getGithub();
-
-	describe('name', () => {
-		it('should store engineer name', () => {
-			expect(name).toBe('Jenny');
+	describe('initialization', () => {
+		// positive test
+		it("returns object with 'name' property set to 'name' argument when called with the 'new' keyword", () => {
+			const validName = 'Jenny';
+			const validId = 2;
+			const validEmail = 'jenny@hotmail.com';
+			const validGithub = 'jenny22';
+			const engineer = new Engineer(validName, validId, validEmail, validGithub);
+			expect(engineer.name).toBe('Jenny');
+		});
+		// positive test
+		it("returns object with 'id' property set to 'id' argument when called with the 'new' keyword", () => {
+			const validName = 'Jenny';
+			const validId = 2;
+			const validEmail = 'jenny@hotmail.com';
+			const validGithub = 'jenny22';
+			const engineer = new Engineer(validName, validId, validEmail, validGithub);
+			expect(engineer.name).toBe('Jenny');
 		});
 	});
 
 	describe('id', () => {
 		it('should store engineer id', () => {
-			expect(id).toBe(2);
+			expect(engineer.id).toBe(2);
 		});
 	});
 
 	describe('email', () => {
 		it('should store engineer email', () => {
-			expect(email).toBe('jenny@hotmail.com');
+			expect(engineer.email).toBe('jenny@hotmail.com');
 		});
 	});
 
 	describe('github', () => {
 		it('should store engineer github', () => {
-			expect(github).toBe('jenny22');
+			expect(engineer.github).toBe('jenny22');
 		});
 	});
 
 	describe('getName', () => {
 		it('should return engineer name', () => {
-			expect(returnedName).toBe('Jenny');
+			expect(engineer.getName()).toBe('Jenny');
 		});
 	});
 
 	describe('getId', () => {
 		it('should return engineer id', () => {
-			expect(returnedId).toBe(2);
+			expect(engineer.getId()).toBe(2);
 		});
 	});
 
 	describe('getEmail', () => {
 		it('should return engineer email', () => {
-			expect(returnedEmail).toBe('jenny@hotmail.com');
+			expect(engineer.getEmail()).toBe('jenny@hotmail.com');
 		});
 	});
 
 	describe('getRole', () => {
 		it("should return 'Engineer'", () => {
-			expect(returnedRole).toBe('Engineer');
+			expect(engineer.getRole()).toBe('Engineer');
 		});
 	});
 
 	describe('getGitHub', () => {
 		it('should return github username', () => {
-			expect(returnedGithub).toBe('jenny22');
+			expect(engineer.getGithub()).toBe('jenny22');
 		});
 	});
 });
- */
