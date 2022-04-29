@@ -3,7 +3,7 @@ const Employee = require('../lib/Employee');
 describe('Employee class', () => {
 	describe('initialization', () => {
 		// positive test
-		it("returns object with 'name' property set to 'name' arguments when called with the 'new' keyword", () => {
+		it("returns object with 'name' property set to 'name' argument when called with the 'new' keyword", () => {
 			// arrange
 			const name = 'Jenny';
 			const id = 2;
@@ -111,14 +111,20 @@ describe('Employee class', () => {
 		});
 
 		// exception test
+		// you can use test.each to loop through these
 		it("throws error if non-empty and valid string 'email' param is not provided", () => {
-			const validName = 'Jenny';
-			const validId = 2;
 			const invalidEmails = ['', ' ', 2, null, 'jenny', '@', '.', '@.', 'jenny@.', '@hotmail.', '@.com', 'jenny@hotmail.', 'jenny@.com', '@hotmail.com', 'je nny@hotmail.com', 'jenny@ho tmail.com', 'jenny@hotmail.c om'];
 			invalidEmails.forEach((invalidEmail) => {
 				let cb = () => new Employee(validName, validId, invalidEmail);
 				expect(cb).toThrow();
 			});
+		});
+
+		const validName = 'Jenny';
+		const validId = 2;
+		test.each(['', ' ', 2, null, 'jenny', '@', '.', '@.', 'jenny@.', '@hotmail.', '@.com', 'jenny@hotmail.', 'jenny@.com', '@hotmail.com', 'je nny@hotmail.com', 'jenny@ho tmail.com', 'jenny@hotmail.c om'])("throws error if non-empty and valid string 'email' param is not provided input %s", (input) => {
+			let cb = () => new Employee(validName, validId, input);
+			expect(cb).toThrow();
 		});
 	});
 
@@ -127,10 +133,10 @@ describe('Employee class', () => {
 		it('returns employee name', () => {
 			// arrange
 			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
-			const cb = () => employee.getName();
+			const result = employee.getName();
 
 			// assert
-			expect(employee.getName()).toBe('Jenny');
+			expect(result).toBe('Jenny');
 		});
 	});
 
@@ -140,10 +146,10 @@ describe('Employee class', () => {
 			// arrange
 			const id = 2;
 			const employee = new Employee('Jenny', id, 'jenny@hotmail.com');
-			const cb = () => employee.getId();
+			const result = employee.getId();
 
 			// assert
-			expect(employee.getId()).toBe(id);
+			expect(result).toBe(id);
 		});
 	});
 
@@ -153,10 +159,10 @@ describe('Employee class', () => {
 			// arrange
 			const email = 'jenny@hotmail.com';
 			const employee = new Employee('Jenny', 2, email);
-			const cb = () => employee.getEmail();
+			const result = employee.getEmail();
 
 			// assert
-			expect(employee.getEmail()).toBe(email);
+			expect(result).toBe(email);
 		});
 	});
 });
