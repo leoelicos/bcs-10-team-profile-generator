@@ -1,68 +1,62 @@
-describe('dummy', () => {
-	it('should pass', () => {
-		expect(1).toBe(1);
-	});
-});
-/* const Manager = require('../lib/Manager');
-const Employee = require('../lib/Employee');
-
+const Manager = require('../lib/Manager');
+/* 
+officeNumber
+getRole()—overridden to return 'Manager'
+*/
 describe('Manager class', () => {
-	const manager = new Manager('Jenny', 2, 'jenny@hotmail.com', 23);
-	const name = manager.name;
-	const id = manager.id;
-	const email = manager.email;
-	const officeNumber = manager.officeNumber;
-	const returnedName = manager.getName();
-	const returnedId = manager.getId();
-	const returnedEmail = manager.getEmail();
-	const returnedRole = manager.getRole();
+	describe('initialization', () => {
+		// positive test
+		it("returns object with 'officeNumber' property set to 'officeNumber' argument when called with the 'new' keyword", () => {
+			// arrange
+			const validName = 'Jenny';
+			const validId = 2;
+			const validEmail = 'jenny@hotmail.com';
+			const officeNumber = 10;
+			const manager = new Manager(validName, validId, validEmail, officeNumber);
 
-	describe('name', () => {
-		it('should store manager name', () => {
-			expect(name).toBe('Jenny');
+			//assert
+			expect(manager.officeNumber).toBe(officeNumber);
 		});
-	});
 
-	describe('id', () => {
-		it('should store manager id', () => {
-			expect(id).toBe(2);
+		// exception test
+		it("throws error if positive 'officeNumber' param is not provided", () => {
+			// arrange
+			const validName = 'Jenny';
+			const invalidOfficeNumber = -1;
+			const validEmail = 'jenny@hotmail.com';
+			const cb = () => new Manager(validName, invalidId, validEmail, invalidOfficeNumber);
+
+			// assert
+			expect(cb).toThrow();
 		});
-	});
 
-	describe('email', () => {
-		it('should store manager email', () => {
-			expect(email).toBe('jenny@hotmail.com');
-		});
-	});
+		// exception test
+		it("throws error if positive 'officeNumber' param is not provided", () => {
+			// arrange
+			const validName = 'Jenny';
+			const invalidOfficeNumber = 0;
+			const validEmail = 'jenny@hotmail.com';
+			const cb = () => new Manager(validName, invalidId, validEmail, invalidOfficeNumber);
 
-	describe('officeNumber', () => {
-		it('should store manager office number', () => {
-			expect(officeNumber).toBe(23);
-		});
-	});
-
-	describe('getName', () => {
-		it('should return manager name', () => {
-			expect(returnedName).toBe('Jenny');
-		});
-	});
-
-	describe('getId', () => {
-		it('should return manager id', () => {
-			expect(returnedId).toBe(2);
-		});
-	});
-
-	describe('getEmail', () => {
-		it('should return manager email', () => {
-			expect(returnedEmail).toBe('jenny@hotmail.com');
+			// assert
+			expect(cb).toThrow();
 		});
 	});
 
 	describe('getRole', () => {
-		it("should return 'Manager'", () => {
-			expect(returnedRole).toBe('Manager');
+		// positive test
+		it("returns role of 'Manager'", () => {
+			// arrange
+			const role = 'Manager';
+			const validName = 'Jenny';
+			const validId = 2;
+			const validEmail = 'jenny@hotmail.com';
+			const officeNumber = 10;
+			const manager = new Manager(validName, validId, validEmail, officeNumber);
+			const result = manager.getRole();
+
+			// assert
+			expect(result).toBe(role);
 		});
 	});
 });
- */
