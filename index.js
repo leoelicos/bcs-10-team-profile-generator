@@ -103,6 +103,7 @@ async function getMember(role) {
 	let data = await inquirer.prompt(questions);
 	let menu = data.menu;
 	data.role = role;
+	// create classes
 	dataStack.push(data);
 	if (menu === employeeRole[ROLE_ENGINEER]) {
 		await getMember(ROLE_ENGINEER);
