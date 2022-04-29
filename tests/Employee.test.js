@@ -165,4 +165,17 @@ describe('Employee class', () => {
 			expect(result).toBe(email);
 		});
 	});
+
+	describe('getRole', () => {
+		// positive test
+		it("returns role of 'employee'", () => {
+			// arrange
+			const role = 'Employee';
+			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
+			const result = employee.getRole();
+
+			// assert
+			expect(result).toBe(role);
+		});
+	});
 });
