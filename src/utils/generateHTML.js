@@ -1,13 +1,24 @@
 /* 
- this file generates the markdown for HTML
+ generateHTML.js
+ 
+ this file generates HTML string based on the data that is passed into generateHTML()
+
+ Copyright Leo Wong 2022
  */
 
-// a function to generate markdown for HTML
-function generateMarkdown(data) {
+// function generates HTML based on data param, which is an array of child classes of parent class Employee
+function generateHTML(data) {
+	// link to favicon, which is an icon of a group of people
 	const faviconLink = 'https://www.veryicon.com/download/png/miscellaneous/fire-fighting-gantt-chart/team-29?s=256';
+
+	// name of the project
 	const projectTitle = 'Team Profile Generator';
+
+	// the text content of the page header
 	const headerText = 'My Team';
 
+	// beginning of the template literal to store the static as well as dynamically generated html on line 39
+	// the dynamically generated part comes from helper function renderEmployees on line 47
 	let html = `
 		<!DOCTYPE html>
 		<html lang="en">
@@ -33,31 +44,33 @@ function generateMarkdown(data) {
 	return html;
 }
 
-// function to return HTML code containing employee data
+// helper function to return dynamically generated HTML code based on param data
 function renderEmployees(data) {
-	let string = '';
-	// iterate through the number of team member objects and add them to the string
-	for (let i = 0; i < data.length; i++) {
-		const role = data[i].getRole();
-		const name = data[i].getName();
-		const id = data[i].getId();
-		const email = data[i].getEmail();
+	// beginning of the template literal to store the dynamically generated HTML
+	let html = '';
 
-		let details = '';
+	// iterate through the number of team member objects and concatenate to the above html string
+	data.forEach((employee) => {
+		// parent class methods
+		const name = employee.getName();
+		const id = employee.getId();
+		const email = employee.getEmail();
+
+		// string to store employee details
 		let detail = '';
 
+		// get employee details using child class methods
+		const role = employee.getRole();
 		if (role === 'Manager') {
-			details = data[i].getOfficeNumber();
-			detail = `Office ${details}`;
+			detail = `Office ${employee.getOfficeNumber()}`;
 		} else if (role === 'Engineer') {
-			details = data[i].getGithub();
-			detail = `<a target="_blank" href="https://github.com/${details}">${details}</a>`;
+			detail = `<a target="_blank" href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a>`;
 		} else if (role === 'Intern') {
-			details = data[i].getSchool();
-			detail = `${details}`;
+			detail = `${employee.getSchool()}`;
 		}
 
-		string += `
+		// concatenate dynamically generated html to the return string
+		html += `
 		<div class="card ${role.toLowerCase()}">
 			<div class="card-title">
 				<div class="card-name">${name}</div>
@@ -71,8 +84,10 @@ function renderEmployees(data) {
 				</ul>
 			</div>
 		</div>`;
-	}
-	return string;
+	});
+
+	// return string
+	return html;
 }
 
-module.exports = generateMarkdown;
+module.exports = generateHTML;
