@@ -1,7 +1,7 @@
 /* 
 index.js
 
-This file contains all of the necessary javascript to call inquirer and chalk to render the questions and also calls generateMarkdown() from /utils/ to render an HTML and CSS file inside the /dist/ folder
+This file contains all of the necessary javascript to call inquirer and chalk to render the questions and also calls generateHTML() from /utils/ to render an HTML and CSS file inside the /dist/ folder
 
 Copyright Leo Wong 2022
 */
@@ -10,7 +10,8 @@ Copyright Leo Wong 2022
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const fs = require('fs');
-const generateMarkdown = require('./src/utils/generateMarkdown');
+
+const generateHTML = require('./src/utils/generateHTML');
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -20,22 +21,16 @@ const Intern = require('./lib/Intern');
 const primary = (w) => chalk.magenta.bgWhite(` ${w} `);
 const secondary = (w) => chalk.greenBright.bgGray(` ${w} `);
 const tertiary = (w) => chalk.black.bgWhite(` ${w} `);
-const greeting = tertiary(`Welcome to Team Profile Generator! Let's do this!`);
+const greeting = (w) => tertiary(w);
 
 // array to store all of the team members
 const employees = [];
 
-const ROLE_MANAGER = 0;
-const ROLE_ENGINEER = 1;
-const ROLE_INTERN = 2;
-
-const employeeRole = ['Manager', 'Engineer', 'Intern'];
-
 // function to initialize app
 async function init() {
 	employees.length = 0;
-	console.log(greeting);
-	await getMember(ROLE_MANAGER);
+	console.log(greeting(`Welcome to Team Profile Generator! Let's do this!`));
+	await getMember('Manager');
 	await writeStyleCSS('style.css');
 	await writeNormalizeCSS('normalize.css');
 	await writeHTML('myTeam.html', employees);
@@ -44,20 +39,19 @@ async function init() {
 // function to generate array of questions for user input
 function generateQuestions(role) {
 	const questions = [];
-	const thisRole = employeeRole[role];
 
 	// name
 	questions.push({
 		name: 'name',
 		type: 'input',
-		message: primary(thisRole) + secondary(`What's the ${thisRole}'s name?`),
+		message: primary(role) + secondary(`What's the ${role}'s name?`),
 	});
 
 	// id
 	questions.push({
 		name: 'id',
 		type: 'input',
-		message: primary(thisRole) + secondary(`What's the ${thisRole}'s ID?`),
+		message: primary(role) + secondary(`What's the ${role}'s ID?`),
 		validate(value) {
 			const pass = value.match(/[0-9]+/);
 			if (pass && +value > 0) return true;
@@ -69,7 +63,7 @@ function generateQuestions(role) {
 	questions.push({
 		name: 'email',
 		type: 'input',
-		message: primary(thisRole) + secondary(`What's the ${thisRole}'s email?`),
+		message: primary(role) + secondary(`What's the ${role}'s email?`),
 		validate(value) {
 			const pass = value.match(/.+@+.+\.+.+/);
 			if (pass) return true;
@@ -78,13 +72,12 @@ function generateQuestions(role) {
 	});
 
 	// extraDetails
-	const details = ['office number', 'GitHub', 'school'];
 	questions.push({
 		name: 'details',
 		type: 'input',
-		message: primary(thisRole) + secondary(`What's the ${thisRole}'s ${details[role]}?`),
+		message: primary(role) + secondary(`What's the ${role}'s ${role === 'Manager' ? 'office number' : role === 'Engineer' ? 'GitHub' : 'school'}?`),
 		validate(value) {
-			if (role === ROLE_MANAGER) {
+			if (role === 'Manager') {
 				const pass = value.match(/[0-9]+/);
 				if (pass && +value > 0) return true;
 				return 'Please enter a valid office number (positive numbers only)';
@@ -98,7 +91,7 @@ function generateQuestions(role) {
 		name: 'menu',
 		type: 'list',
 		message: primary('Add') + secondary('Another team member?'),
-		choices: [employeeRole[ROLE_ENGINEER], employeeRole[ROLE_INTERN], 'No more'],
+		choices: ['Engineer', 'Intern', 'No more'],
 	});
 
 	return questions;
@@ -108,13 +101,13 @@ async function getMember(role) {
 	let questions = generateQuestions(role);
 	let data = await inquirer.prompt(questions);
 	let employee = new Employee(data.name, +data.id, data.email);
-	if (role === ROLE_MANAGER) {
+	if (role === 'Manager') {
 		let officeNumber = +data.details;
 		employees.push(new Manager(employee.getName(), employee.getId(), employee.getEmail(), officeNumber));
-	} else if (role === ROLE_ENGINEER) {
+	} else if (role === 'Engineer') {
 		let gitHub = data.details;
 		employees.push(new Engineer(employee.getName(), employee.getId(), employee.getEmail(), gitHub));
-	} else if (role === ROLE_INTERN) {
+	} else if (role === 'Intern') {
 		let school = data.details;
 		employees.push(new Intern(employee.getName(), employee.getId(), employee.getEmail(), school));
 	}
@@ -122,17 +115,17 @@ async function getMember(role) {
 	// recursively run this function until menu question returns 'No more'
 	if (data.menu === 'No more') {
 		return;
-	} else if (data.menu === employeeRole[ROLE_ENGINEER]) {
-		await getMember(ROLE_ENGINEER);
-	} else if (data.menu === employeeRole[ROLE_INTERN]) {
-		await getMember(ROLE_INTERN);
+	} else if (data.menu === 'Engineer') {
+		await getMember('Engineer');
+	} else if (data.menu === 'Intern') {
+		await getMember('Intern');
 	}
 }
 
 // function to write HTML file
 async function writeHTML(fileName, data) {
 	const filePath = './dist/';
-	fs.writeFile(filePath + fileName, generateMarkdown(data), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
+	fs.writeFile(filePath + fileName, generateHTML(data), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
 }
 // function to write style CSS file
 async function writeStyleCSS(fileName) {
