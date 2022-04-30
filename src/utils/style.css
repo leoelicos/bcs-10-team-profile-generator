@@ -80,7 +80,7 @@ main {
 }
 
 .manager .card-title .card-role::before {
-	content: '\f530';
+	content: '\f7b6';
 }
 .engineer .card-title .card-role::before {
 	content: '\f530';
