@@ -139,12 +139,24 @@ async function writeHTML(fileName, data) {
 // function to write style CSS file
 async function writeStyleCSS(fileName) {
 	const filePath = './dist/';
-	fs.writeFile(filePath + fileName, generateStyle(), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
+	fs.readFile('./src/utils/style.css', 'utf8', (error, data) => {
+		if (error) {
+			console.error(error);
+		} else {
+			fs.writeFile(filePath + fileName, data, (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
+		}
+	});
 }
 // function to write normalize CSS file
 async function writeNormalizeCSS(fileName) {
 	const filePath = './dist/';
-	fs.writeFile(filePath + fileName, generateNormalize(), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
+	fs.readFile('./src/utils/normalize.css', 'utf8', (error, data) => {
+		if (error) {
+			console.error(error);
+		} else {
+			fs.writeFile(filePath + fileName, data, (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
+		}
+	});
 }
 
 // Function call to initialize app
