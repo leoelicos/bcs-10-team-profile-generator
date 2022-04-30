@@ -38,10 +38,10 @@ async function init() {
 	await getMember('Manager');
 
 	// copy normalize.css file from utils/ to dist/
-	await writeNormalizeCSS('normalize.css');
+	await copyNormalize('./src/utils/normalize.css', './dist/normalize.css');
 
 	// copy style.css file from utils/ to dist/
-	await writeStyleCSS('style.css');
+	await copyStyle('./src/utils/style.css', './dist/style.css');
 
 	// write the HTML file based on the information obtained from getMember function on line 38
 	await writeHTML('myTeam.html', employees);
@@ -159,7 +159,7 @@ async function writeHTML(fileName, data) {
 	fs.writeFile(filePath + fileName, generateHTML(data), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
 }
 // function to write style CSS file
-async function writeStyleCSS(fileName) {
+async function copyStyle(source, destination) {
 	// store generated files in the dist folder
 	const source = './src/utils/style.css';
 	const destination = './dist/' + fileName;
@@ -174,7 +174,7 @@ async function writeStyleCSS(fileName) {
 	});
 }
 // function to write normalize CSS file
-async function writeNormalizeCSS(fileName) {
+async function copyNormalize(source, destination) {
 	// store generated files in the dist folder
 	const source = './src/utils/normalize.css';
 	const destination = './dist/' + fileName;
