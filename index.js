@@ -11,6 +11,8 @@ const inquirer = require('inquirer');
 const chalk = require('chalk');
 const fs = require('fs');
 const generateMarkdown = require('./src/utils/generateMarkdown');
+const generateStyle = require('./src/utils/generateStyle');
+const generateNormalize = require('./src/utils/generateNormalize');
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -36,7 +38,9 @@ async function init() {
 	employees.length = 0;
 	console.log(greeting);
 	await getMember(ROLE_MANAGER);
-	writeToFile('myTeam', employees);
+	await writeStyleCSS('style.css');
+	await writeNormalizeCSS('normalize.css');
+	await writeHTML('myTeam.html', employees);
 }
 
 // function to generate array of questions for user input
@@ -127,14 +131,21 @@ async function getMember(role) {
 	}
 }
 
-// function to write README file
-const filePath = './dist/';
-const fileType = '.html';
-async function writeToFile(fileName, data) {
-	await fs.writeFile(filePath + fileName + fileType, generateMarkdown(data), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName + fileType}!`))));
+// function to write HTML file
+async function writeHTML(fileName, data) {
+	const filePath = './dist/';
+	fs.writeFile(filePath + fileName, generateMarkdown(data), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
+}
+// function to write style CSS file
+async function writeStyleCSS(fileName) {
+	const filePath = './dist/';
+	fs.writeFile(filePath + fileName, generateStyle(), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
+}
+// function to write normalize CSS file
+async function writeNormalizeCSS(fileName) {
+	const filePath = './dist/';
+	fs.writeFile(filePath + fileName, generateNormalize(), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
 }
 
 // Function call to initialize app
 init();
-
-// console.log(generateMarkdown('data'));
