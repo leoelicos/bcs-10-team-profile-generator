@@ -21,8 +21,6 @@ While making this app, I learned about the usefulness of constructors and method
 | go inside the folder                                                           | `cd bcs-10-team-profile-generator`                                     |
 | install dependencies                                                           | `npm i`                                                                |
 
-_GIF of Installation:_ [gifinstall](#gifinstall)
-
 ## Usage
 
 | Step                         | Command Line                                                 |
@@ -32,11 +30,9 @@ _GIF of Installation:_ [gifinstall](#gifinstall)
 | _cancel without generating_  | <kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>⌘</kbd> + <kbd>C</kbd> |
 | open /dist/ to see the files | `cd dist`                                                    |
 
-_Video Demo:_ [Demo On YouTube]()
+_Video Demo:_ [Demo On YouTube](https://youtu.be/lAuM7ytCxaU)
 
-_GIF of Usage:_ [gifrun](#gifrun)
-
-_GIF of Document:_ [gifdocument](#gifdocument)
+_Screenshot of Document:_ [generated](#generated)
 
 ## Credits
 
@@ -50,26 +46,10 @@ _GIF of Document:_ [gifdocument](#gifdocument)
 
 Licensed under the [MIT License](./LICENSE).
 
-## GIF Demos
+## Screenshots
 
-### gifInstall
+### generated
 
-_Quick demo of the installation CLI:_
+_Example of the rendered product:_
 
-![install]()
-
----
-
-### gifRun
-
-_Quick demo of the usage CLI:_
-
-![run]()
-
----
-
-### gifDocument
-
-_Quick demo of the rendered product:_
-
-![document]()
+![document](./src/utils/generated.jpg)
