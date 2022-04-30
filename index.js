@@ -11,7 +11,10 @@ const inquirer = require('inquirer');
 const chalk = require('chalk');
 const fs = require('fs');
 const generateMarkdown = require('./src/utils/generateMarkdown');
-const generateMarkdown = require('./src/utils/generateBoilerplate');
+const Employee = require('./lib/Employee');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 // chalk functions add color to console logs for visual impact
 const primary = (w) => chalk.magenta.bgWhite(` ${w} `);
@@ -20,7 +23,7 @@ const tertiary = (w) => chalk.black.bgWhite(` ${w} `);
 const greeting = tertiary(`Welcome to Team Profile Generator! Let's do this!`);
 
 // array to store all of the team members
-const dataStack = [];
+const employees = [];
 
 const ROLE_MANAGER = 0;
 const ROLE_ENGINEER = 1;
@@ -30,10 +33,10 @@ const employeeRole = ['Manager', 'Engineer', 'Intern'];
 
 // function to initialize app
 async function init() {
-	dataStack.length = 0;
+	employees.length = 0;
 	console.log(greeting);
 	await getMember(ROLE_MANAGER);
-	writeToFile('myTeam', dataStack);
+	writeToFile('myTeam', employees);
 }
 
 // function to generate array of questions for user input
@@ -55,8 +58,8 @@ function generateQuestions(role) {
 		message: primary(thisRole) + secondary(`What's the ${thisRole}'s ID?`),
 		validate(value) {
 			const pass = value.match(/[0-9]+/);
-			if (pass) return true;
-			return 'Please enter a valid ID (numbers only)';
+			if (pass && +value > 0) return true;
+			return 'Please enter a valid ID (positive numbers only)';
 		},
 	});
 
@@ -81,8 +84,8 @@ function generateQuestions(role) {
 		validate(value) {
 			if (role === ROLE_MANAGER) {
 				const pass = value.match(/[0-9]+/);
-				if (pass) return true;
-				return 'Please enter a valid office number (numbers only)';
+				if (pass && +value > 0) return true;
+				return 'Please enter a valid office number (positive numbers only)';
 			}
 			return true;
 		},
@@ -102,14 +105,24 @@ function generateQuestions(role) {
 async function getMember(role) {
 	let questions = generateQuestions(role);
 	let data = await inquirer.prompt(questions);
+	let employee = new Employee(data.name, +data.id, data.email);
+	if (role === ROLE_MANAGER) {
+		let officeNumber = +data.details;
+		employees.push(new Manager(employee.getName(), employee.getId(), employee.getEmail(), officeNumber));
+	} else if (role === ROLE_ENGINEER) {
+		let gitHub = data.details;
+		employees.push(new Engineer(employee.getName(), employee.getId(), employee.getEmail(), gitHub));
+	} else if (role === ROLE_INTERN) {
+		let school = data.details;
+		employees.push(new Intern(employee.getName(), employee.getId(), employee.getEmail(), school));
+	}
 
-	let menu = data.menu;
-	data.role = role;
-	// create classes
-	dataStack.push(data);
-	if (menu === employeeRole[ROLE_ENGINEER]) {
+	// recursively run this function until menu question returns 'No more'
+	if (data.menu === 'No more') {
+		return;
+	} else if (data.menu === employeeRole[ROLE_ENGINEER]) {
 		await getMember(ROLE_ENGINEER);
-	} else if (menu === employeeRole[ROLE_INTERN]) {
+	} else if (data.menu === employeeRole[ROLE_INTERN]) {
 		await getMember(ROLE_INTERN);
 	}
 }
@@ -118,9 +131,10 @@ async function getMember(role) {
 const filePath = './dist/';
 const fileType = '.html';
 async function writeToFile(fileName, data) {
-	await fs.writeFile(filePath + fileName + fileType, generateBoilerplate(), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName + fileType}!`))));
-	generateMarkdown(data);
+	await fs.writeFile(filePath + fileName + fileType, generateMarkdown(data), (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName + fileType}!`))));
 }
 
 // Function call to initialize app
 init();
+
+// console.log(generateMarkdown('data'));
