@@ -59,4 +59,20 @@ describe('Manager class', () => {
 			expect(result).toBe(role);
 		});
 	});
+
+	describe('getOfficeNumber', () => {
+		// positive test
+		it("returns office number'", () => {
+			// arrange
+			const officeNumber = 10;
+			const validName = 'Jenny';
+			const validId = 2;
+			const validEmail = 'jenny@hotmail.com';
+			const manager = new Manager(validName, validId, validEmail, officeNumber);
+			const result = manager.getOfficeNumber();
+
+			// assert
+			expect(result).toBe(officeNumber);
+		});
+	});
 });
