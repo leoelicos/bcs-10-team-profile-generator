@@ -52,4 +52,4 @@ Licensed under the [MIT License](./LICENSE).
 
 _Example of the rendered product:_
 
-![document](./src/utils/generated.jpg)
+![document](./Assets/Images/generated.jpg)
