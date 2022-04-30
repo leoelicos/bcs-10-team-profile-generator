@@ -28,88 +28,119 @@ const employees = [];
 
 // function to initialize app
 async function init() {
+	// initialize employees array to remove prior memory
 	employees.length = 0;
+
+	// greet user
 	console.log(greeting(`Welcome to Team Profile Generator! Let's do this!`));
+
+	// ask user questions about team manager and any other members
 	await getMember('Manager');
-	await writeStyleCSS('style.css');
+
+	// copy normalize.css file from utils/ to dist/
 	await writeNormalizeCSS('normalize.css');
+
+	// copy style.css file from utils/ to dist/
+	await writeStyleCSS('style.css');
+
+	// write the HTML file based on the information obtained from getMember function on line 38
 	await writeHTML('myTeam.html', employees);
 }
 
 // function to generate array of questions for user input
 function generateQuestions(role) {
-	const questions = [];
-
-	// name
-	questions.push({
-		name: 'name',
-		type: 'input',
-		message: primary(role) + secondary(`What's the ${role}'s name?`),
-	});
-
-	// id
-	questions.push({
-		name: 'id',
-		type: 'input',
-		message: primary(role) + secondary(`What's the ${role}'s ID?`),
-		validate(value) {
-			const pass = value.match(/[0-9]+/);
-			if (pass && +value > 0) return true;
-			return 'Please enter a valid ID (positive numbers only)';
+	return [
+		{
+			// employee name
+			name: 'name',
+			type: 'input',
+			message: primary(role) + secondary(`What's the ${role}'s name?`),
 		},
-	});
 
-	// email
-	questions.push({
-		name: 'email',
-		type: 'input',
-		message: primary(role) + secondary(`What's the ${role}'s email?`),
-		validate(value) {
-			const pass = value.match(/.+@+.+\.+.+/);
-			if (pass) return true;
-			return 'Please enter a valid email (must contain @ and .)';
-		},
-	});
-
-	// extraDetails
-	questions.push({
-		name: 'details',
-		type: 'input',
-		message: primary(role) + secondary(`What's the ${role}'s ${role === 'Manager' ? 'office number' : role === 'Engineer' ? 'GitHub' : 'school'}?`),
-		validate(value) {
-			if (role === 'Manager') {
+		{
+			// employee id
+			name: 'id',
+			type: 'input',
+			message: primary(role) + secondary(`What's the ${role}'s ID?`),
+			validate(value) {
 				const pass = value.match(/[0-9]+/);
 				if (pass && +value > 0) return true;
-				return 'Please enter a valid office number (positive numbers only)';
-			}
-			return true;
+				return 'Please enter a valid ID (positive numbers only)';
+			},
 		},
-	});
 
-	// moreTeamMembers
-	questions.push({
-		name: 'menu',
-		type: 'list',
-		message: primary('Add') + secondary('Another team member?'),
-		choices: ['Engineer', 'Intern', 'No more'],
-	});
+		{
+			// employee email
+			name: 'email',
+			type: 'input',
+			message: primary(role) + secondary(`What's the ${role}'s email?`),
+			validate(value) {
+				const pass = value.match(/.+@+.+\.+.+/);
+				if (pass) return true;
+				return 'Please enter a valid email (must contain @ and .)';
+			},
+		},
 
-	return questions;
+		{
+			// employee details based on role
+			name: 'details',
+			type: 'input',
+			message: primary(role) + secondary(`What's the ${role}'s ${role === 'Manager' ? 'office number' : role === 'Engineer' ? 'GitHub' : 'school'}?`),
+			validate(value) {
+				if (role === 'Manager') {
+					const pass = value.match(/[0-9]+/);
+					if (pass && +value > 0) return true;
+					return 'Please enter a valid office number (positive numbers only)';
+				}
+				return true;
+			},
+		},
+
+		{
+			// option to add more employees
+			name: 'menu',
+			type: 'list',
+			message: primary('Add') + secondary('Another team member?'),
+			choices: ['Engineer', 'Intern', 'No more'],
+		},
+	];
 }
 
+// function to recursively call inquirer to prompt the user for information about the team members
+// param role is either 'Manager', 'Engineer' or 'Intern'
 async function getMember(role) {
-	let questions = generateQuestions(role);
-	let data = await inquirer.prompt(questions);
-	let employee = new Employee(data.name, +data.id, data.email);
+	// call generateQuestions to get an array of suitable questions for the role arg
+	const questions = generateQuestions(role);
+
+	// call inquirer prompt to prompt the user about the role arg
+	const data = await inquirer.prompt(questions);
+
+	// create class Employee based on this data
+	const employee = new Employee(data.name, +data.id, data.email);
+
+	// use employee methods to get its data
+	let name = employee.getName();
+	let id = employee.getId();
+	let email = employee.getEmail();
+
+	// create Manager, Engineer or Intern classes based on the role arg
 	if (role === 'Manager') {
-		let officeNumber = +data.details;
-		employees.push(new Manager(employee.getName(), employee.getId(), employee.getEmail(), officeNumber));
+		// manager is constructed with office number
+		const officeNumber = +data.details;
+		const manager = new Manager(name, id, email, officeNumber);
+		employees.push(manager);
+		//
 	} else if (role === 'Engineer') {
-		let gitHub = data.details;
-		employees.push(new Engineer(employee.getName(), employee.getId(), employee.getEmail(), gitHub));
+		// engineer is constructed with GitHub login
+		const gitHub = data.details;
+		const engineer = new Engineer(name, id, email, gitHub);
+		employees.push(engineer);
+		//
 	} else if (role === 'Intern') {
-		let school = data.details;
-		employees.push(new Intern(employee.getName(), employee.getId(), employee.getEmail(), school));
+		// intern is constructed with school name
+		const school = data.details;
+		const intern = new Intern(name, id, email, school);
+		employees.push(intern);
 	}
 
 	// recursively run this function until menu question returns 'No more'
@@ -129,23 +160,31 @@ async function writeHTML(fileName, data) {
 }
 // function to write style CSS file
 async function writeStyleCSS(fileName) {
-	const filePath = './dist/';
-	fs.readFile('./src/utils/style.css', 'utf8', (error, data) => {
+	// store generated files in the dist folder
+	const source = './src/utils/style.css';
+	const destination = './dist/' + fileName;
+	const encoding = 'utf8';
+	// read the css file from the source, then try to write it to the destination
+	fs.readFile(source, encoding, (error, data) => {
 		if (error) {
 			console.error(error);
 		} else {
-			fs.writeFile(filePath + fileName, data, (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
+			fs.writeFile(destination, data, (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${destination}!`))));
 		}
 	});
 }
 // function to write normalize CSS file
 async function writeNormalizeCSS(fileName) {
-	const filePath = './dist/';
-	fs.readFile('./src/utils/normalize.css', 'utf8', (error, data) => {
+	// store generated files in the dist folder
+	const source = './src/utils/normalize.css';
+	const destination = './dist/' + fileName;
+	const encoding = 'utf8';
+	// read the css file from the source, then try to write it to the destination
+	fs.readFile(source, encoding, (error, data) => {
 		if (error) {
 			console.error(error);
 		} else {
-			fs.writeFile(filePath + fileName, data, (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${filePath + fileName}!`))));
+			fs.writeFile(destination, data, (err) => (err ? console.warn(err) : console.log(tertiary(`Successfullly created ${destination}!`))));
 		}
 	});
 }
