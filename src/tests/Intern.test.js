@@ -1,9 +1,15 @@
-const Intern = require('../../lib/Intern');
 /* 
-school
-getSchool()
-getRole()—overridden to return 'Intern'
-*/
+ Intern.test.js
+ 
+ this file contains Jest methods to test the Intern class
+
+ Copyright Leo Wong 2022
+ */
+
+// library class
+const Intern = require('../../lib/Intern');
+
+// tests for Intern class
 describe('Intern class', () => {
 	describe('initialization', () => {
 		// positive test
