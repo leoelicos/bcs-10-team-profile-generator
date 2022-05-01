@@ -1,5 +1,5 @@
 /* 
- getMember.js
+ getEmployees.js
  
  this file contains code to call the user for information
 
@@ -20,7 +20,7 @@ const Intern = require('../../lib/Intern');
 
 // function to recursively call inquirer to prompt the user for information about the team members
 // param role is either 'Manager', 'Engineer' or 'Intern'
-async function getMember(employees, role) {
+async function getEmployees(employees, role) {
 	// call generateQuestions to get an array of suitable questions for the role arg
 	const questions = generateQuestions(role);
 
@@ -59,9 +59,9 @@ async function getMember(employees, role) {
 	if (data.menu === 'No more') {
 		return;
 	} else if (data.menu === 'Engineer') {
-		await getMember(employees, 'Engineer');
+		await getEmployees(employees, 'Engineer');
 	} else if (data.menu === 'Intern') {
-		await getMember(employees, 'Intern');
+		await getEmployees(employees, 'Intern');
 	}
 }
-module.exports = getMember;
+module.exports = getEmployees;
