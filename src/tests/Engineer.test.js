@@ -19,7 +19,7 @@ describe('Engineer class', () => {
 
 	describe('getGithub', () => {
 		// positive test
-		it("returns 'jenny22' when Engineer is called with the new keyword and 'github' param is 'jenny22'", () => {
+		it("returns 'jenny22' when Engineer is called with the 'new' keyword and 'github' param is 'jenny22'", () => {
 			// arrange
 			const validName = 'Jenny';
 			const validId = 2;
@@ -35,7 +35,7 @@ describe('Engineer class', () => {
 
 	describe('getRole', () => {
 		// positive test
-		it("returns 'Engineer' when Engineer is called with the new keyword", () => {
+		it("returns 'Engineer' when Engineer is called with the 'new' keyword", () => {
 			// arrange
 			const role = 'Engineer';
 			const validName = 'Jenny';
