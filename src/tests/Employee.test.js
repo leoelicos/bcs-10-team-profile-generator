@@ -39,7 +39,7 @@ describe('Employee class', () => {
 		});
 
 		// exception test
-		it("throws error if 'name' param is not a string", () => {
+		it("throws error if 'name' param is a number", () => {
 			// arrange
 			const invalidName = 2;
 			const validId = 2;
@@ -51,7 +51,7 @@ describe('Employee class', () => {
 		});
 
 		// exception test
-		it("throws error if 'name' param is empty string", () => {
+		it("throws error if 'name' param is ''", () => {
 			// arrange
 			const invalidName = '';
 			const validId = 2;
@@ -63,7 +63,7 @@ describe('Employee class', () => {
 		});
 
 		// exception test
-		it("throws error if 'name' param trimmed is empty string", () => {
+		it("throws error if 'name' param is ' '", () => {
 			// arrange
 			const invalidName = ' ';
 			const validId = 2;
@@ -87,7 +87,7 @@ describe('Employee class', () => {
 		});
 
 		// exception test
-		it("throws error if positive 'id' param is not provided", () => {
+		it("throws error if 'id' param is -1", () => {
 			// arrange
 			const validName = 'Jenny';
 			const invalidId = -1;
@@ -99,7 +99,7 @@ describe('Employee class', () => {
 		});
 
 		// exception test
-		it("throws error if positive 'id' param is not provided", () => {
+		it("throws error if 'id' param is 0", () => {
 			// arrange
 			const validName = 'Jenny';
 			const invalidId = 0;
@@ -111,18 +111,10 @@ describe('Employee class', () => {
 		});
 
 		// exception test
-		// you can use test.each to loop through these
-		it("throws error if non-empty and valid string 'email' param is not provided", () => {
-			const invalidEmails = ['', ' ', 2, null, 'jenny', '@', '.', '@.', 'jenny@.', '@hotmail.', '@.com', 'jenny@hotmail.', 'jenny@.com', '@hotmail.com', 'je nny@hotmail.com', 'jenny@ho tmail.com', 'jenny@hotmail.c om'];
-			invalidEmails.forEach((invalidEmail) => {
-				let cb = () => new Employee(validName, validId, invalidEmail);
-				expect(cb).toThrow();
-			});
-		});
-
 		const validName = 'Jenny';
 		const validId = 2;
-		test.each(['', ' ', 2, null, 'jenny', '@', '.', '@.', 'jenny@.', '@hotmail.', '@.com', 'jenny@hotmail.', 'jenny@.com', '@hotmail.com', 'je nny@hotmail.com', 'jenny@ho tmail.com', 'jenny@hotmail.c om'])("throws error if non-empty and valid string 'email' param is not provided input %s", (input) => {
+		const invalidEmails = ['', ' ', 2, null, 'jenny', '@', '.', '@.', 'jenny@.', '@hotmail.', '@.com', 'jenny@hotmail.', 'jenny@.com', '@hotmail.com', 'je nny@hotmail.com', 'jenny@ho tmail.com', 'jenny@hotmail.c om'];
+		test.each(invalidEmails)("throws error if param 'email' is %s", (input) => {
 			let cb = () => new Employee(validName, validId, input);
 			expect(cb).toThrow();
 		});
@@ -130,7 +122,7 @@ describe('Employee class', () => {
 
 	describe('getName', () => {
 		// positive test
-		it('returns employee name', () => {
+		it("returns 'Jenny' when Employee is called with the new keyword and 'name' param is 'Jenny'", () => {
 			// arrange
 			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
 			const result = employee.getName();
@@ -142,7 +134,7 @@ describe('Employee class', () => {
 
 	describe('getId', () => {
 		// positive test
-		it('returns employee id', () => {
+		it("returns 2 when Employee is called with the new keyword and 'id' param is 2", () => {
 			// arrange
 			const id = 2;
 			const employee = new Employee('Jenny', id, 'jenny@hotmail.com');
@@ -155,7 +147,7 @@ describe('Employee class', () => {
 
 	describe('getEmail', () => {
 		// positive test
-		it('returns employee email', () => {
+		it("returns 'jenny@hotmail.com' when Employee is called with the new keyword and 'email' param is 'jenny@hotmail.com'", () => {
 			// arrange
 			const email = 'jenny@hotmail.com';
 			const employee = new Employee('Jenny', 2, email);
@@ -168,7 +160,7 @@ describe('Employee class', () => {
 
 	describe('getRole', () => {
 		// positive test
-		it("returns role of 'employee'", () => {
+		it("returns 'Employee' when Employee is called with with the new keyword", () => {
 			// arrange
 			const role = 'Employee';
 			const employee = new Employee('Jenny', 2, 'jenny@hotmail.com');
