@@ -21,6 +21,8 @@ While making this app, I learned about the usefulness of constructors and method
 | go inside the folder                                                           | `cd bcs-10-team-profile-generator`                                     |
 | install dependencies                                                           | `npm i`                                                                |
 
+_GIF of Install:_ [gifInstall](#gifInstall)
+
 ## Usage
 
 | Step                         | Command Line                                                 |
@@ -34,6 +36,8 @@ _Video Demo:_ [Demo On YouTube](https://youtu.be/lAuM7ytCxaU)
 
 _Screenshot of Document:_ [generated](#generated)
 
+_GIF of Usage:_ [gifRun](#gifRun)
+
 ## Testing
 
 If you wish to run the tests you will need to install `jest`:
@@ -42,6 +46,44 @@ If you wish to run the tests you will need to install `jest`:
 | ------------- | ----------------------------- |
 | install jest  | `npm install --save-dev jest` |
 | run the tests | `npm run test`                |
+
+_GIF of Test:_ [gifTest](#gifTest)
+
+## Screenshots
+
+---
+
+### gifInstall
+
+_GIF of install:_
+
+![gifInstall](./Assets/img/gifInstall.gif)
+
+---
+
+### gifRun
+
+_GIF of run:_
+
+![gifRun](./Assets/img/gifRun.gif)
+
+---
+
+### generated
+
+_Example of the rendered product:_
+
+![document](./Assets/img/generated.jpg)
+
+---
+
+### gifTest
+
+_GIF of test:_
+
+![gifTest](./Assets/img/gifTest.gif)
+
+---
 
 ## Credits
 
@@ -54,11 +96,3 @@ If you wish to run the tests you will need to install `jest`:
 &copy; Leo Wong <leoelicos@gmail.com>
 
 Licensed under the [MIT License](./LICENSE).
-
-## Screenshots
-
-### generated
-
-_Example of the rendered product:_
-
-![document](./Assets/img/generated.jpg)
