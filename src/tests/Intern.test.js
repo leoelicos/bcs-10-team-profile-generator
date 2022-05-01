@@ -7,7 +7,7 @@ getRole()—overridden to return 'Intern'
 describe('Intern class', () => {
 	describe('initialization', () => {
 		// positive test
-		it("returns object with 'school' property set to 'school' argument when called with the 'new' keyword", () => {
+		it("returns object with 'school' property set to 'Harvard University' when called with the 'new' keyword and 'school' param is 'Harvard University'", () => {
 			const validName = 'Jenny';
 			const validId = 2;
 			const validEmail = 'jenny@hotmail.com';
@@ -19,7 +19,7 @@ describe('Intern class', () => {
 
 	describe('getSchool', () => {
 		// positive test
-		it("returns intern's school", () => {
+		it("returns 'Harvard University' when Intern is called with the new keyword and 'school' param is 'Harvard University'", () => {
 			// arrange
 			const validName = 'Jenny';
 			const validId = 2;
@@ -35,7 +35,7 @@ describe('Intern class', () => {
 
 	describe('getRole', () => {
 		// positive test
-		it("returns role of 'Intern'", () => {
+		it("returns 'Intern' when Intern is called with the new keyword", () => {
 			// arrange
 			const role = 'Intern';
 			const validName = 'Jenny';
