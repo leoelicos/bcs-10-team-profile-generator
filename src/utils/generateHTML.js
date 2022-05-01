@@ -19,27 +19,26 @@ function generateHTML(data) {
 
 	// beginning of the template literal to store the static as well as dynamically generated html on line 39
 	// the dynamically generated part comes from helper function renderEmployees on line 47
-	let html = `
-		<!DOCTYPE html>
-		<html lang="en">
-			<head>
-				<meta charset="UTF-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				<link rel="shortcut icon" href="${faviconLink}" type="image/x-icon" />
-				<link rel="stylesheet" href="../dist/normalize.css" />
-				<link rel="stylesheet" href="../dist/style.css" />
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-				<title>${projectTitle}</title>
-			</head>
-			<body>
-				<header>
-					<h1>${headerText}</h1>
-				</header>
-				<main>
-					${renderEmployees(data)}
-				</main>
-			</body>
-		</html>`;
+	let html = `<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="${faviconLink}" type="image/x-icon" />
+		<link rel="stylesheet" href="../dist/normalize.css" />
+		<link rel="stylesheet" href="../dist/style.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<title>${projectTitle}</title>
+	</head>
+	<body>
+		<header>
+			<h1>${headerText}</h1>
+		</header>
+		<main>
+			${renderEmployees(data)}
+		</main>
+	</body>
+</html>`;
 
 	return html;
 }
@@ -71,19 +70,19 @@ function renderEmployees(data) {
 
 		// concatenate dynamically generated html to the return string
 		html += `
-		<div class="card ${role.toLowerCase()}">
-			<div class="card-title">
-				<div class="card-name">${name}</div>
-				<div class="card-role">${role}</div>
-			</div>
-			<div class="card-body">
-				<ul class="list">
-					<li class="listItem id">ID ${id}</li>
-					<li class="listItem email"><a href="mailto:${email}">${email}</a></li>
-					<li class="listItem detail">${detail}</li >
-				</ul>
-			</div>
-		</div>`;
+			<div class="card ${role.toLowerCase()}">
+				<div class="card-title">
+					<div class="card-name">${name}</div>
+					<div class="card-role">${role}</div>
+				</div>
+				<div class="card-body">
+					<ul class="list">
+						<li class="listItem id">ID ${id}</li>
+						<li class="listItem email"><a href="mailto:${email}">${email}</a></li>
+						<li class="listItem detail">${detail}</li >
+					</ul>
+				</div>
+			</div>`;
 	});
 
 	// return string
