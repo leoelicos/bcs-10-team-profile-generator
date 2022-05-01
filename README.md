@@ -34,6 +34,8 @@ _GIF of Install:_ [gifInstall](#gifInstall)
 
 _Video Demo:_ [Demo On YouTube](https://youtu.be/lAuM7ytCxaU)
 
+_Video of Usage:_ [demo](#demo)
+
 _Screenshot of Document:_ [generated](#generated)
 
 _GIF of Usage:_ [gifRun](#gifRun)
@@ -51,13 +53,19 @@ _GIF of Test:_ [gifTest](#gifTest)
 
 ## Screenshots
 
----
-
 ### gifInstall
 
 _GIF of install:_
 
 ![gifInstall](./Assets/img/gifInstall.gif)
+
+---
+
+### demo
+
+_Video of Usage:_
+
+![demo](./Assets/mp4/teamProfileGeneratorDemo.mp4)
 
 ---
 
