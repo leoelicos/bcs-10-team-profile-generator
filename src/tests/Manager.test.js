@@ -6,7 +6,7 @@ getRole()—overridden to return 'Manager'
 describe('Manager class', () => {
 	describe('initialization', () => {
 		// positive test
-		it("returns object with 'officeNumber' property set to 'officeNumber' argument when called with the 'new' keyword", () => {
+		it("returns object with 'officeNumber' set to 10 when called with the 'new' keyword and 'officeNumber' param is 10", () => {
 			// arrange
 			const validName = 'Jenny';
 			const validId = 2;
@@ -19,7 +19,7 @@ describe('Manager class', () => {
 		});
 
 		// exception test
-		it("throws error if positive 'officeNumber' param is not provided", () => {
+		it("throws error when Manager is called with the 'new' keyword and 'officeNumber' param is -1", () => {
 			// arrange
 			const validName = 'Jenny';
 			const invalidOfficeNumber = -1;
@@ -31,7 +31,7 @@ describe('Manager class', () => {
 		});
 
 		// exception test
-		it("throws error if positive 'officeNumber' param is not provided", () => {
+		it("throws error when Manager is called with the 'new' keyword and 'officeNumber' param is 0", () => {
 			// arrange
 			const validName = 'Jenny';
 			const invalidOfficeNumber = 0;
@@ -45,7 +45,7 @@ describe('Manager class', () => {
 
 	describe('getRole', () => {
 		// positive test
-		it("returns role of 'Manager'", () => {
+		it("returns 'Manager' when Manager is called with the 'new' keyword", () => {
 			// arrange
 			const role = 'Manager';
 			const validName = 'Jenny';
@@ -62,7 +62,7 @@ describe('Manager class', () => {
 
 	describe('getOfficeNumber', () => {
 		// positive test
-		it("returns office number'", () => {
+		it("returns 10 when Manager is called with the 'new' keyword and the 'officeNumber' param is 10", () => {
 			// arrange
 			const officeNumber = 10;
 			const validName = 'Jenny';
