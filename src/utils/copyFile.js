@@ -6,7 +6,10 @@
  Copyright Leo Wong 2022
  */
 
+// fs to handle I/O
 const fs = require('fs');
+
+// utility function to create good-looking console logs
 const chalkRender = require('./chalkRender');
 
 // function to copy a file from source to destination
