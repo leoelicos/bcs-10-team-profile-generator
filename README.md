@@ -14,10 +14,6 @@ While making this app, I learned about the usefulness of constructors and method
 
 ## Installation
 
-
-https://user-images.githubusercontent.com/99461390/166132185-1cbab99f-736c-4d8d-9e05-e8811b2f411f.mp4
-
-
 | Step                                                                           | Command Line                                                           |
 | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
 | install [Node.js](https://nodejs.org/en/download/)                             | —                                                                      |
@@ -36,9 +32,11 @@ _GIF of Install:_ [gifInstall](#gifInstall)
 | _cancel without generating_  | <kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>⌘</kbd> + <kbd>C</kbd> |
 | open /dist/ to see the files | `cd dist`                                                    |
 
-_Video Demo:_ [Demo On YouTube](https://youtu.be/lAuM7ytCxaU)
+_Video demo:_
 
-_Video of Usage:_ [demo](#demo)
+https://user-images.githubusercontent.com/99461390/166132185-1cbab99f-736c-4d8d-9e05-e8811b2f411f.mp4
+
+_or view on YouTube:_ [Demo On YouTube](https://youtu.be/lAuM7ytCxaU)
 
 _Screenshot of Document:_ [generated](#generated)
 
@@ -62,14 +60,6 @@ _GIF of Test:_ [gifTest](#gifTest)
 _GIF of install:_
 
 ![gifInstall](./Assets/img/gifInstall.gif)
-
----
-
-### demo
-
-_Video of Usage:_
-
-![demo](./Assets/mp4/teamProfileGeneratorDemo.mp4)
 
 ---
 
