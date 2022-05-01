@@ -1,9 +1,15 @@
-const Engineer = require('../../lib/Engineer');
 /* 
-github—GitHub username
-getGithub()
-getRole()—overridden to return 'Engineer'
-*/
+ Engineer.test.js
+ 
+ this file contains Jest methods to test the Engineer class
+
+ Copyright Leo Wong 2022
+ */
+
+// library class
+const Engineer = require('../../lib/Engineer');
+
+// tests for Engineer class
 describe('Engineer class', () => {
 	describe('initialization', () => {
 		// positive test
