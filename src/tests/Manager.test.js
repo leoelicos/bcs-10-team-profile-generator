@@ -1,8 +1,15 @@
-const Manager = require('../../lib/Manager');
 /* 
-officeNumber
-getRole()—overridden to return 'Manager'
-*/
+ Manager.test.js
+ 
+ this file contains Jest methods to test the Manager class
+
+ Copyright Leo Wong 2022
+ */
+
+// library class
+const Manager = require('../../lib/Manager');
+
+// tests for Manager class
 describe('Manager class', () => {
 	describe('initialization', () => {
 		// positive test
