@@ -114,8 +114,8 @@ describe('Employee class', () => {
 		const validName = 'Jenny';
 		const validId = 2;
 		const invalidEmails = ['', ' ', 2, null, 'jenny', '@', '.', '@.', 'jenny@.', '@hotmail.', '@.com', 'jenny@hotmail.', 'jenny@.com', '@hotmail.com', 'je nny@hotmail.com', 'jenny@ho tmail.com', 'jenny@hotmail.c om'];
-		test.each(invalidEmails)("throws error if Employee is called with the 'new' keyword and 'email' param is %s", (input) => {
-			let cb = () => new Employee(validName, validId, input);
+		test.each(invalidEmails)("throws error if Employee is called with the 'new' keyword and 'email' param is %s", (invalidEmail) => {
+			let cb = () => new Employee(validName, validId, invalidEmail);
 			expect(cb).toThrow();
 		});
 	});
