@@ -1,5 +1,15 @@
+/* 
+ Employee.test.js
+ 
+ this file contains Jest methods to test the Employee class
+
+ Copyright Leo Wong 2022
+ */
+
+// library class
 const Employee = require('../../lib/Employee');
 
+// tests for Employee class
 describe('Employee class', () => {
 	describe('initialization', () => {
 		// positive test
