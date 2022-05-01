@@ -6,6 +6,7 @@
  Copyright Leo Wong 2022
  */
 
+// utility function to create good-looking console logs
 const chalk = require('chalk');
 
 // chalk callback functions add color to console logs for visual impact
