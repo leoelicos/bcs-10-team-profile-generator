@@ -7,7 +7,7 @@ getRole()—overridden to return 'Engineer'
 describe('Engineer class', () => {
 	describe('initialization', () => {
 		// positive test
-		it("returns object with 'github' property set to 'github' argument when called with the 'new' keyword", () => {
+		it("returns object with 'github' property set to 'jenny22' when called with the 'new' keyword and 'github' param is 'jenny22'", () => {
 			const validName = 'Jenny';
 			const validId = 2;
 			const validEmail = 'jenny@hotmail.com';
@@ -19,7 +19,7 @@ describe('Engineer class', () => {
 
 	describe('getGithub', () => {
 		// positive test
-		it("returns employee's github", () => {
+		it("returns 'jenny22' when Engineer is called with the new keyword and 'github' param is 'jenny22'", () => {
 			// arrange
 			const validName = 'Jenny';
 			const validId = 2;
@@ -35,7 +35,7 @@ describe('Engineer class', () => {
 
 	describe('getRole', () => {
 		// positive test
-		it("returns role of 'Engineer'", () => {
+		it("returns 'Engineer' when Engineer is called with the new keyword", () => {
 			// arrange
 			const role = 'Engineer';
 			const validName = 'Jenny';
